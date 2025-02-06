@@ -1,0 +1,76 @@
+@import "./variables.scss";
+
+.toolbar {
+  height: $toolbar-height;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0px 4px 5px grey;
+  z-index: 10;
+
+  .tools {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .button {
+      height: 25px;
+      width: 25px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-size: cover;
+      margin-left: 10px;
+    }
+
+    .button:active {
+      background-color: aqua;
+      transform: scale(0.9);
+    }
+
+    .Brush {
+      background: url(../assets/images/brush.png) no-repeat center center;
+    }
+    .Rect {
+      background: url(../assets/images/rect.png) no-repeat center center;
+    }
+    .Circle {
+      background: url(../assets/images/circle.png) no-repeat center center;
+    }
+    .Eraser {
+      background: url(../assets/images/eraser.png) no-repeat center center;
+    }
+    .Line {
+      background: url(../assets/images/line.png) no-repeat center center;
+    }
+    .Colors {
+      background: url(../assets/images/colors.png) no-repeat center center;
+    }
+    .Last {
+      background: url(../assets/images/undo.png) no-repeat center center;
+    }
+    .Next {
+      background: url(../assets/images/redo.png) no-repeat center center;
+    }
+    .Save {
+      background: url(../assets/images/save.png) no-repeat center center;
+    }
+  }
+}
+
+.settings {
+  height: $toolbar-height;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0px 4px 5px grey;
+  top: $toolbar-height;
+}
