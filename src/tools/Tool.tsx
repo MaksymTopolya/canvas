@@ -16,6 +16,7 @@ export default class Tool {
     this.sessionId = id;
 
     this.ctx && (this.ctx.strokeStyle = color);
+    this.ctx && (this.ctx.fillStyle = color);
 
     this.removeEventListeners();
   }
