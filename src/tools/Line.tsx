@@ -8,8 +8,13 @@ export default class Line extends Tool {
   endX: number = 0;
   endY: number = 0;
 
-  constructor(canvas: HTMLCanvasElement, socket: WebSocket, id: string) {
-    super(canvas, socket, id);
+  constructor(
+    canvas: HTMLCanvasElement,
+    socket: WebSocket,
+    id: string,
+    color: string
+  ) {
+    super(canvas, socket, id, color);
     this.listener();
   }
 

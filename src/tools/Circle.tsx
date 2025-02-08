@@ -7,8 +7,13 @@ export default class Circle extends Tool {
   width: number = 0;
   height: number = 0;
 
-  constructor(canvas: HTMLCanvasElement, socket: WebSocket, id: string) {
-    super(canvas, socket, id);
+  constructor(
+    canvas: HTMLCanvasElement,
+    socket: WebSocket,
+    id: string,
+    color: string
+  ) {
+    super(canvas, socket, id, color);
     this.listener();
   }
 

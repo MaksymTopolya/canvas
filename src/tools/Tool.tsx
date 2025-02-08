@@ -9,7 +9,6 @@ export default class Tool {
     socket: WebSocket,
     id: string,
     color: string
-    // width: number
   ) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
@@ -17,7 +16,6 @@ export default class Tool {
     this.sessionId = id;
 
     this.ctx && (this.ctx.strokeStyle = color);
-    // this.ctx && (this.ctx.lineWidth = width);
 
     this.removeEventListeners();
   }

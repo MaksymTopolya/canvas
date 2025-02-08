@@ -45,7 +45,8 @@ export default function ToolBar() {
                 new Rect(
                   canvasState.canvas,
                   canvasState.socket!,
-                  canvasState.sessionId!
+                  canvasState.sessionId!,
+                  toolState.color
                 )
               );
             }
@@ -59,7 +60,8 @@ export default function ToolBar() {
                 new Circle(
                   canvasState.canvas,
                   canvasState.socket!,
-                  canvasState.sessionId!
+                  canvasState.sessionId!,
+                  toolState.color
                 )
               );
             }
@@ -88,7 +90,8 @@ export default function ToolBar() {
                 new Line(
                   canvasState.canvas,
                   canvasState.socket!,
-                  canvasState.sessionId!
+                  canvasState.sessionId!,
+                  toolState.color
                 )
               );
             }

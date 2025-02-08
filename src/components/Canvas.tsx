@@ -171,7 +171,7 @@ const Canvas = observer(() => {
 
   return (
     <div className="canvas">
-      {/* <ToastContainer aria-label="toast-container" /> */}
+      <ToastContainer aria-label="toast-container" />
       <Modal show={show} onHide={() => {}}>
         <Modal.Header closeButton>
           <Modal.Title>Your name</Modal.Title>
