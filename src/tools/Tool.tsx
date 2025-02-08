@@ -4,11 +4,20 @@ export default class Tool {
   socket: WebSocket | null;
   sessionId: string | undefined;
 
-  constructor(canvas: HTMLCanvasElement, socket: WebSocket, id: string) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    socket: WebSocket,
+    id: string,
+    color: string
+    // width: number
+  ) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.socket = socket;
     this.sessionId = id;
+
+    this.ctx && (this.ctx.strokeStyle = color);
+    // this.ctx && (this.ctx.lineWidth = width);
 
     this.removeEventListeners();
   }

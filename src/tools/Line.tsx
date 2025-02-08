@@ -33,6 +33,7 @@ export default class Line extends Tool {
           endX: this.endX,
           endY: this.endY,
           color: this.ctx?.fillStyle,
+          width: this.ctx?.lineWidth,
         },
       })
     );
@@ -76,11 +77,13 @@ export default class Line extends Tool {
     endX: number,
     endY: number,
     ctx: CanvasRenderingContext2D,
-    color: string
+    color: string,
+    width: number
   ) {
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.strokeStyle = color;
+    ctx.lineWidth = width;
     ctx.lineTo(endX, endY);
     ctx.stroke();
   }

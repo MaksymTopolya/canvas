@@ -27,5 +27,6 @@ export interface DrawMessage {
         endX: number;
         endY: number;
         color: string;
+        width: number;
       };
 }

@@ -3,12 +3,22 @@ import Brush from "./Brush";
 export default class Eraser extends Brush {
   mouseDown: boolean = false;
 
-  constructor(canvas: HTMLCanvasElement, socket: WebSocket, id: string) {
-    super(canvas, socket, id);
+  constructor(
+    canvas: HTMLCanvasElement,
+    socket: WebSocket,
+    id: string,
+    width: number
+  ) {
+    super(canvas, socket, id, width, "white");
   }
 
   mouseMoveHandler(e: MouseEvent) {
     if (this.mouseDown) {
+      this.draw(
+        e.pageX - (e.target as HTMLElement).offsetLeft,
+        e.pageY - (e.target as HTMLElement).offsetTop,
+        this.ctx!
+      );
       if (!this.socket) return;
       this.socket.send(
         JSON.stringify({
@@ -18,7 +28,6 @@ export default class Eraser extends Brush {
             type: "eraser",
             x: e.pageX - (e.target as HTMLElement).offsetLeft,
             y: e.pageY - (e.target as HTMLElement).offsetTop,
-            color: this.ctx?.strokeStyle,
             width: this.ctx?.lineWidth,
           },
         })
@@ -26,7 +35,15 @@ export default class Eraser extends Brush {
     }
   }
 
-  static drawEraser(
+  draw(x: number, y: number, ctx: CanvasRenderingContext2D) {
+    if (!ctx) return;
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = this.lineWidth;
+    ctx.lineTo(x, y);
+    ctx.stroke();
+  }
+
+  static eraserDraw(
     x: number,
     y: number,
     ctx: CanvasRenderingContext2D,

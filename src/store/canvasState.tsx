@@ -78,8 +78,8 @@ class canvasState {
   setSocket(socket: WebSocket | null) {
     this.socket = socket;
   }
-  setSessionId(sesionId: string | undefined) {
-    this.sessionId = sesionId;
+  setSessionId(sessionId: string | undefined) {
+    this.sessionId = sessionId;
   }
 
   setColor(color: string | undefined) {

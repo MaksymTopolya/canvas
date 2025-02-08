@@ -29,7 +29,9 @@ export default function ToolBar() {
                 new Brush(
                   canvasState.canvas,
                   canvasState.socket!,
-                  canvasState.sessionId!
+                  canvasState.sessionId!,
+                  toolState.width,
+                  toolState.color
                 )
               );
             }
@@ -71,7 +73,8 @@ export default function ToolBar() {
                 new Eraser(
                   canvasState.canvas,
                   canvasState.socket!,
-                  canvasState.sessionId!
+                  canvasState.sessionId!,
+                  toolState.width
                 )
               );
             }

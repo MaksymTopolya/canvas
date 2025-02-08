@@ -1,10 +1,16 @@
 import Tool from "./Tool";
 export default class Brush extends Tool {
   mouseDown: boolean = false;
-
-  constructor(canvas: HTMLCanvasElement, socket: WebSocket, id: string) {
-    super(canvas, socket, id);
-
+  constructor(
+    canvas: HTMLCanvasElement,
+    socket: WebSocket,
+    id: string,
+    width: number,
+    color: string
+  ) {
+    super(canvas, socket, id, color);
+    this.lineWidth = width;
+    // this.strokeColor(color);
     this.listener();
   }
 
@@ -44,8 +50,14 @@ export default class Brush extends Tool {
   }
   mouseMoveHandler(e: MouseEvent) {
     if (!this.ctx) return;
-    // this.ctx.strokeStyle = this.color;
+
     if (this.mouseDown) {
+      this.draw(
+        e.pageX - (e.target as HTMLElement).offsetLeft,
+        e.pageY - (e.target as HTMLElement).offsetTop,
+        this.ctx,
+        this.ctx.strokeStyle
+      );
       if (!this.socket) return;
       this.socket.send(
         JSON.stringify({
@@ -63,7 +75,20 @@ export default class Brush extends Tool {
     }
   }
 
-  static draw(
+  draw(
+    x: number,
+    y: number,
+    ctx: CanvasRenderingContext2D,
+    color: string | CanvasGradient | CanvasPattern
+  ) {
+    if (!ctx) return;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = this.lineWidth;
+    ctx.lineTo(x, y);
+    ctx.stroke();
+  }
+
+  static staticDraw(
     x: number,
     y: number,
     ctx: CanvasRenderingContext2D,

@@ -62,7 +62,15 @@ const Canvas = observer(() => {
       canvasState.setSocket(socket);
       canvasState.setSessionId(params.id);
       if (canvasRef.current && params.id) {
-        toolState.setTool(new Brush(canvasRef.current, socket, params.id));
+        toolState.setTool(
+          new Brush(
+            canvasRef.current,
+            socket,
+            params.id,
+            toolState.width,
+            "#000000"
+          )
+        );
       }
 
       socket.onopen = () => {
@@ -99,7 +107,7 @@ const Canvas = observer(() => {
     const prevColor = ctx!.strokeStyle;
     switch (figure.type) {
       case "brush":
-        Brush.draw(figure.x, figure.y, ctx!, figure.color, figure.width);
+        Brush.staticDraw(figure.x, figure.y, ctx!, figure.color, figure.width);
         break;
       case "rect":
         Rect.staticDraw(
@@ -122,7 +130,7 @@ const Canvas = observer(() => {
         );
         break;
       case "eraser":
-        Eraser.drawEraser(figure.x, figure.y, ctx!, figure.width);
+        Eraser.eraserDraw(figure.x, figure.y, ctx!, figure.width);
         break;
       case "line":
         Line.staticDraw(
@@ -131,12 +139,10 @@ const Canvas = observer(() => {
           figure.endX,
           figure.endY,
           ctx!,
-          figure.color
+          figure.color,
+          figure.width
         );
-        ctx!.strokeStyle = prevColor;
-        ctx!.fillStyle = prevColor;
         break;
-
       case "finish":
         ctx?.beginPath();
         break;
@@ -144,6 +150,7 @@ const Canvas = observer(() => {
     ctx!.lineWidth = toolState.width;
     ctx!.strokeStyle = prevColor;
     ctx!.fillStyle = prevColor;
+    console.log(prevColor);
   };
 
   const mouseDownHandler = () => {
@@ -164,7 +171,7 @@ const Canvas = observer(() => {
 
   return (
     <div className="canvas">
-      <ToastContainer aria-label="toast-container" />
+      {/* <ToastContainer aria-label="toast-container" /> */}
       <Modal show={show} onHide={() => {}}>
         <Modal.Header closeButton>
           <Modal.Title>Your name</Modal.Title>
